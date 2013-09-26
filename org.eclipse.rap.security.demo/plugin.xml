@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="mailapp.entrypoints"
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            path="/mail"
+            applicationId="org.eclipse.rap.security.demo.mailapp"
+            id="mailapp.entrypoint">
+      </entrypoint>
+   </extension>
+   <extension
+         id="org.eclipse.rap.security.demo.mailapp"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            thread="main"
+            cardinality="singleton-global"
+            visible="true">
+         <run
+               class="org.eclipse.rap.security.demo.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RAP Perspective"
+            class="org.eclipse.rap.security.demo.Perspective"
+            id="org.eclipse.rap.security.demo.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            name="Message"
+            icon="icons/sample2.gif"
+            class="org.eclipse.rap.security.demo.View"
+            id="org.eclipse.rap.security.demo.view">
+      </view>
+      <view
+            name="Mailboxes"
+            icon="icons/sample3.gif"
+            class="org.eclipse.rap.security.demo.NavigationView"
+            id="org.eclipse.rap.security.demo.navigationView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Mail"
+            id="org.eclipse.rap.security.demo.category">
+      </category>
+      <command
+            name="Open Mailbox"
+            description="Opens a mailbox"
+            categoryId="org.eclipse.rap.security.demo.category"
+            id="org.eclipse.rap.security.demo.open">
+      </command>
+      <command
+            name="Open Message Dialog"
+            description="Opens a message dialog"
+            categoryId="org.eclipse.rap.security.demo.category"
+            id="org.eclipse.rap.security.demo.openMessage">
+      </command>
+   </extension>
+
+  <extension id="unixLoginModule"
+           name="Unix Login Module"
+           point="org.eclipse.equinox.security.loginModule">
+   <loginModule
+       class="com.sun.security.auth.module.NTLoginModule"
+       description="NT Login Module">
+   </loginModule>
+   </extension>
+</plugin>
